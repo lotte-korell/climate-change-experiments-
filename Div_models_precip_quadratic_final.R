@@ -1,6 +1,5 @@
-getwd()
-setwd("C:/Users/korell/R/Meta.analysis/results")
-dir()
+rm(list = ls())
+gc()
 
 
 library(lme4)
@@ -10,12 +9,11 @@ library(ggplot2)
 library(MuMIn)
 library(arm)
 
-
-
-Div.data_local <- read.csv("Precip_data_final.csv" ,dec=".", sep=";",h=T)
-Div.data_gamma <- read.csv("Precip_data_gamma_final.csv" ,dec=".", sep=";",h=T)
-Cum.abs_local <- read.csv("ES.cum.abs_final.csv" ,dec=".", sep=";",h=T)
-Cum.abs_gamma<- read.csv("ES.cum.abs.gamma_final.csv" ,dec=".", sep=";",h=T)
+URL <- "https://raw.githubusercontent.com/lotte-korell/climate-change-experiments-/master/"
+Div.data_local <- read.csv(paste0(URL, "Precip_data_final.csv") ,dec=".", sep=";",h=T)
+Div.data_gamma <- read.csv(paste0(URL, "Precip_data_gamma_final.csv"),dec=".", sep=";",h=T)
+Cum.abs_local <- read.csv(paste0(URL, "ES.cum.abs_final.csv") ,dec=".", sep=";",h=T)
+Cum.abs_gamma<- read.csv(paste0(URL, "ES.cum.abs.gamma_final.csv") ,dec=".", sep=";",h=T)
 
 ##convert duration into factor to include it as random effect in the model
 Div.data_local$treat.duration.m<-as.factor(Div.data_local$treat.duration.m)
